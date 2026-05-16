@@ -33,7 +33,7 @@ DEFAULTS = {
     'primary_color': -1,
     'secondary_color': -1,
     'accent_color': -1,
-    'flash_text': 'STITCH',
+    'flash_text': 'BR_ID_GE',
     'frame_delay': 0.05,
     'strobe_speed': 2,
     'glitch_intensity': 0.4,
@@ -63,15 +63,6 @@ DEFAULTS = {
     'map_cursor_x': None,
     'map_cursor_y': None,
     'bridge_title': 'BR_ID_GE',
-    'bridge_kicker': 'GYUMRI <-> MUNICH',
-    'bridge_latency': '121-228MS',
-    'bridge_where': 'LATENT SPACE',
-    'bridge_node_a': 'GYUMRI [TUFF]',
-    'bridge_node_b': 'MUNICH [STEEL]',
-    'bridge_signals': 'AI STITCH|SHARED BODY|GHOST HAND|LATENT HANDSHAKE|ARMENIAN EMOTION|GERMAN LIGHT|DIGITAL ARCHITECTURE|NETWORK LAG|RECIPROCAL TRAP|POINT CLOUDS',
-    'bridge_signals_a': 'AI STITCH|SHARED BODY|GHOST HAND|LATENT HANDSHAKE|ARMENIAN EMOTION',
-    'bridge_signals_b': 'GERMAN LIGHT|DIGITAL ARCHITECTURE|NETWORK LAG|RECIPROCAL TRAP|POINT CLOUDS',
-    'bridge_footer': 'TELE-SYMBIOTIC XR PERFORMANCE',
 }
 
 

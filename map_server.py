@@ -603,54 +603,19 @@ canvas{cursor:crosshair}
     <div class="ctrl-section">
       <h3>FLASH TEXT</h3>
       <div class="flash-row">
-        <input type="text" id="flash-input" placeholder="STITCH" value="STITCH"
+        <input type="text" id="flash-input" placeholder="BR_ID_GE" value="BR_ID_GE"
                onkeydown="if(event.key==='Enter')triggerFlash()">
         <button class="cbtn" onclick="triggerFlash()">TRIGGER</button>
       </div>
     </div>
 
     <div class="ctrl-section" style="grid-column:1/-1">
-      <h3>BRIDGE COPY</h3>
+      <h3>BR_ID_GE</h3>
       <div class="ctrl-stack">
         <div>
           <label>TITLE</label>
           <input type="text" id="bridge-title" placeholder="BR_ID_GE"
                  oninput="ctrlSet('bridge_title',this.value)">
-        </div>
-        <div>
-          <label>KICKER</label>
-          <input type="text" id="bridge-kicker" placeholder="GYUMRI <-> MUNICH"
-                 oninput="ctrlSet('bridge_kicker',this.value)">
-        </div>
-        <div>
-          <label>LATENCY</label>
-          <input type="text" id="bridge-latency" placeholder="121-228MS"
-                 oninput="ctrlSet('bridge_latency',this.value)">
-        </div>
-        <div>
-          <label>NODE A</label>
-          <input type="text" id="bridge-node-a" placeholder="GYUMRI [TUFF]"
-                 oninput="ctrlSet('bridge_node_a',this.value)">
-        </div>
-        <div>
-          <label>NODE B</label>
-          <input type="text" id="bridge-node-b" placeholder="MUNICH [STEEL]"
-                 oninput="ctrlSet('bridge_node_b',this.value)">
-        </div>
-        <div style="grid-column:1/-1">
-          <label>NODE A SIGNALS (use | between phrases)</label>
-          <input type="text" id="bridge-signals-a" placeholder="AI STITCH|SHARED BODY|GHOST HAND|LATENT HANDSHAKE|ARMENIAN EMOTION"
-                 oninput="ctrlSet('bridge_signals_a',this.value)">
-        </div>
-        <div style="grid-column:1/-1">
-          <label>NODE B SIGNALS (use | between phrases)</label>
-          <input type="text" id="bridge-signals-b" placeholder="GERMAN LIGHT|DIGITAL ARCHITECTURE|NETWORK LAG|RECIPROCAL TRAP|POINT CLOUDS"
-                 oninput="ctrlSet('bridge_signals_b',this.value)">
-        </div>
-        <div style="grid-column:1/-1">
-          <label>FOOTER</label>
-          <input type="text" id="bridge-footer" placeholder="TELE-SYMBIOTIC XR PERFORMANCE"
-                 oninput="ctrlSet('bridge_footer',this.value)">
         </div>
       </div>
     </div>
@@ -1188,15 +1153,8 @@ function applyCtrlToUI(c){
   const bb=document.getElementById('blackout-btn');
   if(bb)bb.classList.toggle('on',!!(c.blackout));
 
-  syncTextInput('flash-input',c.flash_text??'STITCH');
-  syncTextInput('bridge-title',c.bridge_title??'');
-  syncTextInput('bridge-kicker',c.bridge_kicker??'');
-  syncTextInput('bridge-latency',c.bridge_latency??'');
-  syncTextInput('bridge-node-a',c.bridge_node_a??c.bridge_where??'');
-  syncTextInput('bridge-node-b',c.bridge_node_b??'');
-  syncTextInput('bridge-signals-a',c.bridge_signals_a??'');
-  syncTextInput('bridge-signals-b',c.bridge_signals_b??'');
-  syncTextInput('bridge-footer',c.bridge_footer??'');
+  syncTextInput('flash-input',c.flash_text??'BR_ID_GE');
+  syncTextInput('bridge-title',c.bridge_title??'BR_ID_GE');
 }
 
 function syncTextInput(id,value){
@@ -1243,7 +1201,7 @@ function tapTempo(){
 }
 
 function triggerFlash(){
-  const txt=document.getElementById('flash-input').value||'STITCH';
+  const txt=document.getElementById('flash-input').value||'BR_ID_GE';
   ctrlSet('flash_text',txt);
   ctrlSet('flash_active',true);
   clearTimeout(flashTimer);
