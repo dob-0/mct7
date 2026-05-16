@@ -118,10 +118,10 @@ EXTERNAL_OVERRIDE_KEYS = {
     'blackout', 'flash_active', 'flash_text',
     'sym_set', 'layer_b_alpha', 'mapping',
     'map_mode', 'map_selected', 'map_cursor_x', 'map_cursor_y',
-    'event_title', 'event_kicker', 'event_when', 'event_where',
-    'event_stage_a', 'event_stage_b',
-    'event_lineup', 'event_lineup_a', 'event_lineup_b',
-    'event_footer',
+    'bridge_title', 'bridge_kicker', 'bridge_latency', 'bridge_where',
+    'bridge_node_a', 'bridge_node_b',
+    'bridge_signals', 'bridge_signals_a', 'bridge_signals_b',
+    'bridge_footer',
 }
 
 PRESETS = {

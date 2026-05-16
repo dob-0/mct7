@@ -9,10 +9,10 @@ class Poster(Mode):
     NAME = 'POSTER'
     ORDER = 18
 
-    DEFAULT_LINEUP_A = [
+    DEFAULT_SIGNALS_A = [
         'AI STITCH', 'SHARED BODY', 'GHOST HAND', 'LATENT HANDSHAKE', 'ARMENIAN EMOTION',
     ]
-    DEFAULT_LINEUP_B = [
+    DEFAULT_SIGNALS_B = [
         'GERMAN LIGHT', 'DIGITAL ARCHITECTURE', 'NETWORK LAG', 'RECIPROCAL TRAP', 'POINT CLOUDS',
     ]
 
@@ -29,36 +29,41 @@ class Poster(Mode):
         for x in range(max(0, x0), min(w, x1)):
             self.put(buf, x, y, ch, col, w, h)
 
-    def _meta(self, cfg, key, fallback):
-        value = cfg.get(key)
-        if value is None:
-            return fallback
-        text = str(value).strip()
-        return text or fallback
+    def _meta(self, cfg, keys, fallback):
+        if isinstance(keys, str):
+            keys = (keys,)
+        for key in keys:
+            value = cfg.get(key)
+            if value is None:
+                continue
+            text = str(value).strip()
+            if text:
+                return text
+        return fallback
 
-    def _lineup(self, cfg, key, fallback):
-        raw = self._meta(cfg, key, '|'.join(fallback))
+    def _signals(self, cfg, keys, fallback):
+        raw = self._meta(cfg, keys, '|'.join(fallback))
         items = [part.strip() for part in re.split(r'[|\n]+', raw) if part.strip()]
         return items or list(fallback)
 
     def _title_text(self, cfg):
-        title = self._meta(cfg, 'event_title', '') or self._meta(cfg, 'flash_text', 'STITCH')
+        title = self._meta(cfg, 'bridge_title', '') or self._meta(cfg, 'flash_text', 'STITCH')
         title = title.upper()
         if ' ' not in title and len(title) <= 10:
             return ' '.join(title)
         return re.sub(r'\s+', ' ', title)
 
-    def _stage_blocks(self, cfg):
-        stage_a = self._meta(cfg, 'event_stage_a', self._meta(cfg, 'event_where', 'LATENT SPACE')).upper()
-        stage_b = self._meta(cfg, 'event_stage_b', 'MUNICH [STEEL]').upper()
-        lineup_a = self._lineup(cfg, 'event_lineup_a', self.DEFAULT_LINEUP_A)
-        lineup_b = self._lineup(cfg, 'event_lineup_b', self.DEFAULT_LINEUP_B)
-        if not cfg.get('event_lineup_a') and not cfg.get('event_lineup_b'):
-            combined = self._lineup(cfg, 'event_lineup', self.DEFAULT_LINEUP_A + self.DEFAULT_LINEUP_B)
-            split = min(len(self.DEFAULT_LINEUP_A), len(combined))
-            lineup_a = combined[:split]
-            lineup_b = combined[split:] or list(self.DEFAULT_LINEUP_B)
-        return (stage_a, lineup_a), (stage_b, lineup_b)
+    def _node_blocks(self, cfg):
+        node_a = self._meta(cfg, 'bridge_node_a', self._meta(cfg, 'bridge_where', 'LATENT SPACE')).upper()
+        node_b = self._meta(cfg, 'bridge_node_b', 'MUNICH [STEEL]').upper()
+        signals_a = self._signals(cfg, 'bridge_signals_a', self.DEFAULT_SIGNALS_A)
+        signals_b = self._signals(cfg, 'bridge_signals_b', self.DEFAULT_SIGNALS_B)
+        if not cfg.get('bridge_signals_a') and not cfg.get('bridge_signals_b'):
+            combined = self._signals(cfg, 'bridge_signals', self.DEFAULT_SIGNALS_A + self.DEFAULT_SIGNALS_B)
+            split = min(len(self.DEFAULT_SIGNALS_A), len(combined))
+            signals_a = combined[:split]
+            signals_b = combined[split:] or list(self.DEFAULT_SIGNALS_B)
+        return (node_a, signals_a), (node_b, signals_b)
 
     def _draw_blob(self, buf, w, h, tf, energy, primary, secondary, accent):
         x0 = max(0, int(w * 0.44))
@@ -111,10 +116,10 @@ class Poster(Mode):
         accent = C[pal['a']]
         dark = C['dim']
         title = self._title_text(cfg)
-        kicker = self._meta(cfg, 'event_kicker', 'GYUMRI <-> MUNICH').upper()
-        when = self._meta(cfg, 'event_when', '121-228MS').upper()
-        footer = self._meta(cfg, 'event_footer', 'TELE-SYMBIOTIC XR PERFORMANCE').upper()
-        (stage_a, lineup_a), (stage_b, lineup_b) = self._stage_blocks(cfg)
+        kicker = self._meta(cfg, 'bridge_kicker', 'GYUMRI <-> MUNICH').upper()
+        latency = self._meta(cfg, 'bridge_latency', '121-228MS').upper()
+        footer = self._meta(cfg, 'bridge_footer', 'TELE-SYMBIOTIC XR PERFORMANCE').upper()
+        (node_a, signals_a), (node_b, signals_b) = self._node_blocks(cfg)
 
         for y in range(h):
             for x in range(w):
@@ -135,7 +140,7 @@ class Poster(Mode):
         self._draw_blob(buf, w, h, tf, energy, primary, secondary, accent)
 
         meta_y = max(1, h // 9)
-        meta = f'{kicker} {when}'
+        meta = f'{kicker} {latency}'
         self._write(buf, w, h, 3, meta_y, meta, fg)
         self._hline(buf, w, h, 2, min(w - 2, 2 + len(meta) + 6), meta_y + 1, '─', dark)
 
@@ -146,14 +151,14 @@ class Poster(Mode):
         self._hline(buf, w, h, title_x, min(w, title_x + len(title) - 6), title_y + 2, '─', primary)
 
         left_x = 3
-        lineup_y = title_y + 4
+        signals_y = title_y + 4
         sections = [
-            (stage_a, lineup_a, lineup_y),
-            (stage_b, lineup_b, lineup_y + 2 + len(lineup_a) * 2),
+            (node_a, signals_a, signals_y),
+            (node_b, signals_b, signals_y + 2 + len(signals_a) * 2),
         ]
-        for si, (stage_name, artists, sy) in enumerate(sections):
-            self._write(buf, w, h, left_x, sy, stage_name, fg)
-            for li, name in enumerate(artists):
+        for si, (node_name, signals, sy) in enumerate(sections):
+            self._write(buf, w, h, left_x, sy, node_name, fg)
+            for li, name in enumerate(signals):
                 self._write(buf, w, h, left_x, sy + 2 + li * 2, name.upper(), fg if (li + si) % 3 else accent)
 
         for i in range(4):
@@ -167,7 +172,7 @@ class Poster(Mode):
 
         footer_y = max(1, h - 3)
         self._write(buf, w, h, 3, footer_y, footer, fg)
-        self._write(buf, w, h, max(3, w - len(when) - 4), footer_y, when, secondary)
+        self._write(buf, w, h, max(3, w - len(latency) - 4), footer_y, latency, secondary)
 
         for _ in range(10 + int(energy * 10)):
             x = random.randint(0, max(0, w - 8))

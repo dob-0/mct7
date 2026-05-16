@@ -9,8 +9,15 @@ class Split(Mode):
     NAME = 'SPLIT'
     ORDER = 21
 
+    def _first(self, cfg, key, fallback):
+        value = cfg.get(key)
+        if value is None:
+            return fallback
+        text = str(value).strip()
+        return text or fallback
+
     def _parts(self, value, fallback):
-        raw = str(value or fallback)
+        raw = str(value or '|'.join(fallback))
         items = [part.strip() for part in re.split(r'[|\n]+', raw) if part.strip()]
         return items or fallback
 
@@ -28,14 +35,14 @@ class Split(Mode):
         accent = C[pal['a']]
         dark = C['dim']
 
-        title = str(cfg.get('event_title', cfg.get('flash_text', 'STITCH')) or 'STITCH').upper()
-        kicker = str(cfg.get('event_kicker', 'GYUMRI <-> MUNICH') or 'GYUMRI <-> MUNICH').upper()
-        when = str(cfg.get('event_when', '121-228MS') or '121-228MS').upper()
-        stage_a = str(cfg.get('event_stage_a', cfg.get('event_where', 'LATENT SPACE')) or 'LATENT SPACE').upper()
-        stage_b = str(cfg.get('event_stage_b', 'MUNICH [STEEL]') or 'MUNICH [STEEL]').upper()
-        lineup_a = self._parts(cfg.get('event_lineup_a'), ['AI STITCH', 'SHARED BODY', 'GHOST HAND', 'LATENT HANDSHAKE', 'ARMENIAN EMOTION'])
-        lineup_b = self._parts(cfg.get('event_lineup_b'), ['GERMAN LIGHT', 'DIGITAL ARCHITECTURE', 'NETWORK LAG', 'RECIPROCAL TRAP', 'POINT CLOUDS'])
-        footer = str(cfg.get('event_footer', 'TELE-SYMBIOTIC XR PERFORMANCE') or 'TELE-SYMBIOTIC XR PERFORMANCE').upper()
+        title = self._first(cfg, 'bridge_title', cfg.get('flash_text', 'STITCH')).upper()
+        kicker = self._first(cfg, 'bridge_kicker', 'GYUMRI <-> MUNICH').upper()
+        latency = self._first(cfg, 'bridge_latency', '121-228MS').upper()
+        node_a = self._first(cfg, 'bridge_node_a', self._first(cfg, 'bridge_where', 'LATENT SPACE')).upper()
+        node_b = self._first(cfg, 'bridge_node_b', 'MUNICH [STEEL]').upper()
+        signals_a = self._parts(cfg.get('bridge_signals_a'), ['AI STITCH', 'SHARED BODY', 'GHOST HAND', 'LATENT HANDSHAKE', 'ARMENIAN EMOTION'])
+        signals_b = self._parts(cfg.get('bridge_signals_b'), ['GERMAN LIGHT', 'DIGITAL ARCHITECTURE', 'NETWORK LAG', 'RECIPROCAL TRAP', 'POINT CLOUDS'])
+        footer = self._first(cfg, 'bridge_footer', 'TELE-SYMBIOTIC XR PERFORMANCE').upper()
 
         for y in range(h):
             for x in range(w):
@@ -66,7 +73,7 @@ class Split(Mode):
                 elif v > 1.28 and random.random() < 0.75:
                     buf[y][x] = (random.choice(['▒', '░']), primary)
 
-        meta = f'{kicker} {when}'
+        meta = f'{kicker} {latency}'
         mx = max(2, int(w * 0.08))
         my = max(2, h // 9)
         for i, ch in enumerate(meta[: max(0, w - mx - 2)]):
@@ -83,14 +90,14 @@ class Split(Mode):
         left_x = max(2, int(w * 0.08))
         y0 = title_y + 5
         sections = [
-            (stage_a, lineup_a, y0),
-            (stage_b, lineup_b, y0 + 2 + len(lineup_a) * 2),
+            (node_a, signals_a, y0),
+            (node_b, signals_b, y0 + 2 + len(signals_a) * 2),
         ]
-        for si, (label, artists, sy) in enumerate(sections):
+        for si, (label, signals, sy) in enumerate(sections):
             for i, ch in enumerate(label):
                 if ch != ' ':
                     self.put(buf, left_x + i, sy, ch, C['white'], w, h)
-            for li, name in enumerate(artists):
+            for li, name in enumerate(signals):
                 row_y = sy + 2 + li * 2
                 col = C['white'] if (li + si) % 2 == 0 else accent
                 for i, ch in enumerate(name.upper()[: max(0, w - left_x - 2)]):

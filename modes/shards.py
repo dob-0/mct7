@@ -67,8 +67,10 @@ class Shards(Mode):
                     cell = base
                 buf[y][x] = cell
 
-        title = str(cfg.get('event_title', cfg.get('flash_text', 'STITCH')) or 'STITCH').upper()
-        meta = f"{str(cfg.get('event_kicker', 'GYUMRI <-> MUNICH')).upper()} {str(cfg.get('event_when', '121-228MS')).upper()}"
+        title = str(cfg.get('bridge_title', cfg.get('flash_text', 'STITCH')) or 'STITCH').upper()
+        kicker = str(cfg.get('bridge_kicker', 'GYUMRI <-> MUNICH') or 'GYUMRI <-> MUNICH').upper()
+        latency = str(cfg.get('bridge_latency', '121-228MS') or '121-228MS').upper()
+        meta = f"{kicker} {latency}"
         tx = max(2, int(w * 0.08))
         ty = max(2, h // 8)
         for i, ch in enumerate(meta[: max(0, w - tx - 2)]):

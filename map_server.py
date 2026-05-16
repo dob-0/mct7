@@ -614,43 +614,43 @@ canvas{cursor:crosshair}
       <div class="ctrl-stack">
         <div>
           <label>TITLE</label>
-          <input type="text" id="event-title" placeholder="BR_ID_GE"
-                 oninput="ctrlSet('event_title',this.value)">
+          <input type="text" id="bridge-title" placeholder="BR_ID_GE"
+                 oninput="ctrlSet('bridge_title',this.value)">
         </div>
         <div>
           <label>KICKER</label>
-          <input type="text" id="event-kicker" placeholder="GYUMRI <-> MUNICH"
-                 oninput="ctrlSet('event_kicker',this.value)">
+          <input type="text" id="bridge-kicker" placeholder="GYUMRI <-> MUNICH"
+                 oninput="ctrlSet('bridge_kicker',this.value)">
         </div>
         <div>
-          <label>WHEN</label>
-          <input type="text" id="event-when" placeholder="121-228MS"
-                 oninput="ctrlSet('event_when',this.value)">
+          <label>LATENCY</label>
+          <input type="text" id="bridge-latency" placeholder="121-228MS"
+                 oninput="ctrlSet('bridge_latency',this.value)">
         </div>
         <div>
           <label>NODE A</label>
-          <input type="text" id="event-stage-a" placeholder="GYUMRI [TUFF]"
-                 oninput="ctrlSet('event_stage_a',this.value)">
+          <input type="text" id="bridge-node-a" placeholder="GYUMRI [TUFF]"
+                 oninput="ctrlSet('bridge_node_a',this.value)">
         </div>
         <div>
           <label>NODE B</label>
-          <input type="text" id="event-stage-b" placeholder="MUNICH [STEEL]"
-                 oninput="ctrlSet('event_stage_b',this.value)">
+          <input type="text" id="bridge-node-b" placeholder="MUNICH [STEEL]"
+                 oninput="ctrlSet('bridge_node_b',this.value)">
         </div>
         <div style="grid-column:1/-1">
           <label>NODE A SIGNALS (use | between phrases)</label>
-          <input type="text" id="event-lineup-a" placeholder="AI STITCH|SHARED BODY|GHOST HAND|LATENT HANDSHAKE|ARMENIAN EMOTION"
-                 oninput="ctrlSet('event_lineup_a',this.value)">
+          <input type="text" id="bridge-signals-a" placeholder="AI STITCH|SHARED BODY|GHOST HAND|LATENT HANDSHAKE|ARMENIAN EMOTION"
+                 oninput="ctrlSet('bridge_signals_a',this.value)">
         </div>
         <div style="grid-column:1/-1">
           <label>NODE B SIGNALS (use | between phrases)</label>
-          <input type="text" id="event-lineup-b" placeholder="GERMAN LIGHT|DIGITAL ARCHITECTURE|NETWORK LAG|RECIPROCAL TRAP|POINT CLOUDS"
-                 oninput="ctrlSet('event_lineup_b',this.value)">
+          <input type="text" id="bridge-signals-b" placeholder="GERMAN LIGHT|DIGITAL ARCHITECTURE|NETWORK LAG|RECIPROCAL TRAP|POINT CLOUDS"
+                 oninput="ctrlSet('bridge_signals_b',this.value)">
         </div>
         <div style="grid-column:1/-1">
           <label>FOOTER</label>
-          <input type="text" id="event-footer" placeholder="TELE-SYMBIOTIC XR PERFORMANCE"
-                 oninput="ctrlSet('event_footer',this.value)">
+          <input type="text" id="bridge-footer" placeholder="TELE-SYMBIOTIC XR PERFORMANCE"
+                 oninput="ctrlSet('bridge_footer',this.value)">
         </div>
       </div>
     </div>
@@ -1189,14 +1189,14 @@ function applyCtrlToUI(c){
   if(bb)bb.classList.toggle('on',!!(c.blackout));
 
   syncTextInput('flash-input',c.flash_text??'STITCH');
-  syncTextInput('event-title',c.event_title??'');
-  syncTextInput('event-kicker',c.event_kicker??'');
-  syncTextInput('event-when',c.event_when??'');
-  syncTextInput('event-stage-a',c.event_stage_a??c.event_where??'');
-  syncTextInput('event-stage-b',c.event_stage_b??'');
-  syncTextInput('event-lineup-a',c.event_lineup_a??'');
-  syncTextInput('event-lineup-b',c.event_lineup_b??'');
-  syncTextInput('event-footer',c.event_footer??'');
+  syncTextInput('bridge-title',c.bridge_title??'');
+  syncTextInput('bridge-kicker',c.bridge_kicker??'');
+  syncTextInput('bridge-latency',c.bridge_latency??'');
+  syncTextInput('bridge-node-a',c.bridge_node_a??c.bridge_where??'');
+  syncTextInput('bridge-node-b',c.bridge_node_b??'');
+  syncTextInput('bridge-signals-a',c.bridge_signals_a??'');
+  syncTextInput('bridge-signals-b',c.bridge_signals_b??'');
+  syncTextInput('bridge-footer',c.bridge_footer??'');
 }
 
 function syncTextInput(id,value){

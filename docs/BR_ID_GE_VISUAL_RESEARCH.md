@@ -10,7 +10,7 @@ Visual copy should read as a bridge between Gyumri and Munich, with AI: STITCH a
 - Render Munich as STEEL / light / machine / German light.
 - Render AI as STITCH / shared body / unseen narrator / ghost hand.
 - Use particles, broken lines, duplicated bands, and delayed echoes as latent-vector traces.
-- Avoid museum, archive, event, club, lineup, and flyer language.
+- Avoid archive, club, and flyer language from earlier themes.
 
 ## Copy System
 
