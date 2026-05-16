@@ -1,6 +1,6 @@
-# MOCT 7 | Cursor AI Rules
+# Abovyan Museum | Cursor AI Rules
 
-This is a live VJ terminal visual engine for a techno event (MOCT 7, Hayfilm Studio, Yerevan 2026).
+This is a live VJ terminal visual engine for a museum visual day at the Museum of the Abovyan, Yerevan 2026.
 The user edits visuals.py in real time during performances. Changes hot-reload in ~1 second via os.execv.
 
 ## Project layout
@@ -32,7 +32,7 @@ The user edits visuals.py in real time during performances. Changes hot-reload i
 3. Append name to MODES in _ii.py
 
 ## Aesthetic
-Industrial/techno. Bold ANSI colors. Math-driven animation (sin/cos). BPM-aware where possible.
+Museum atmosphere: archival light, manuscript texture, stone memory, bold ANSI contrast. Math-driven animation (sin/cos). BPM-aware where possible.
 Characters from self.syms: ['█','▓','▒','░','▚','◈','7','M','O','C','T'].
 
 ## Hot reload

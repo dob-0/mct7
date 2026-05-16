@@ -67,8 +67,8 @@ class Shards(Mode):
                     cell = base
                 buf[y][x] = cell
 
-        title = str(cfg.get('event_title', cfg.get('flash_text', 'SYNAPSE')) or 'SYNAPSE').upper()
-        meta = f"{str(cfg.get('event_kicker', 'EPOCA ->')).upper()} {str(cfg.get('event_when', 'MAY 15')).upper()}"
+        title = str(cfg.get('event_title', cfg.get('flash_text', 'ABOVYAN')) or 'ABOVYAN').upper()
+        meta = f"{str(cfg.get('event_kicker', 'MUSEUM ->')).upper()} {str(cfg.get('event_when', 'MAY 16')).upper()}"
         tx = max(2, int(w * 0.08))
         ty = max(2, h // 8)
         for i, ch in enumerate(meta[: max(0, w - tx - 2)]):

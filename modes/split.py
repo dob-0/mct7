@@ -28,14 +28,14 @@ class Split(Mode):
         accent = C[pal['a']]
         dark = C['dim']
 
-        title = str(cfg.get('event_title', cfg.get('flash_text', 'SYNAPSE')) or 'SYNAPSE').upper()
-        kicker = str(cfg.get('event_kicker', 'EPOCA ->') or 'EPOCA ->').upper()
-        when = str(cfg.get('event_when', 'MAY 15') or 'MAY 15').upper()
-        stage_a = str(cfg.get('event_stage_a', cfg.get('event_where', 'STUDIO')) or 'STUDIO').upper()
-        stage_b = str(cfg.get('event_stage_b', 'BAR') or 'BAR').upper()
-        lineup_a = self._parts(cfg.get('event_lineup_a'), ['UVALL [GE]', 'HONNELOOK', 'SCRIPT [GE]', 'FUKUMACHI [GE]', 'MTVARE [GE]'])
-        lineup_b = self._parts(cfg.get('event_lineup_b'), ['MARS', 'ICECHAIN', 'MA', 'LYUPEN', 'ISO'])
-        footer = str(cfg.get('event_footer', 'SCIENCE AND SPIRIT') or 'SCIENCE AND SPIRIT').upper()
+        title = str(cfg.get('event_title', cfg.get('flash_text', 'ABOVYAN')) or 'ABOVYAN').upper()
+        kicker = str(cfg.get('event_kicker', 'MUSEUM ->') or 'MUSEUM ->').upper()
+        when = str(cfg.get('event_when', 'MAY 16') or 'MAY 16').upper()
+        stage_a = str(cfg.get('event_stage_a', cfg.get('event_where', 'MUSEUM')) or 'MUSEUM').upper()
+        stage_b = str(cfg.get('event_stage_b', 'COURTYARD') or 'COURTYARD').upper()
+        lineup_a = self._parts(cfg.get('event_lineup_a'), ['MANUSCRIPT LIGHT', 'INK FIELD', 'STONE MEMORY', 'WINDOW TRACE', 'COURTYARD SIGNAL'])
+        lineup_b = self._parts(cfg.get('event_lineup_b'), ['BOOK SHADOW', 'ROOM TONE', 'MUSEUM ECHO', 'YEREVAN AIR', 'NIGHT READING'])
+        footer = str(cfg.get('event_footer', 'LIVE VISUALS IN THE MUSEUM') or 'LIVE VISUALS IN THE MUSEUM').upper()
 
         for y in range(h):
             for x in range(w):

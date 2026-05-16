@@ -1,6 +1,6 @@
 # ii — AI Context
 
-**_ii** is a live VJ terminal visual engine — a clean generic build for Hayfilm Studio, Yerevan. The user runs this during live performances and edits it in real time via prompts.
+**_ii** is a live VJ terminal visual engine — a clean generic build for museum and projection work in Yerevan. The user runs this during live performances and edits it in real time via prompts.
 
 Remote management: `ii start|stop|restart|status|attach|update|watch` (script at `~/bin/ii` on the Debian host). Visuals run on TTY1; the curses deck runs in tmux session `ii`; the web panel runs at `:7777`.
 
@@ -103,7 +103,7 @@ Curses TUI. Single class `NodeEngine`. Writes `control.json` every loop iteratio
 1  WAVE       — 3 overlapping sine waves (grid buffer approach)
 2  GLITCH     — random scanline corruption + occasional logo flash
 3  STROBE     — full-fill / blank alternation, BPM-syncable
-4  LOGO       — MOCT big box-drawing text centered on noise bg
+4  LOGO       — big box-drawing signal centered on noise bg
 5  PULSE      — BPM-synced expanding ring (polar distance per cell)
 6  TEXT       — flash_text in scrolling bands + centered big text
 7  TUNNEL     — inverse radial projection, precomputed polar cache
@@ -116,7 +116,7 @@ Curses TUI. Single class `NodeEngine`. Writes `control.json` every loop iteratio
 14 CUBE       — rotating 3D wireframe cube via rot3d + bresenham
 15 SHOCKWAVE  — multiple expanding ring objects, BPM-syncable spawn
 16 NOISE      — smooth multi-sine noise field, char+color by value
-17 LIQUID     — MOCT poster look: white block-type over blue/magenta fluid forms, mic+camera reactive
+17 LIQUID     — museum poster look: white block-type over blue/magenta fluid forms, mic+camera reactive
 18 POSTER     — hard flyer system: stacked oversized type, arcs, stage labels, block glitch background
 ```
 

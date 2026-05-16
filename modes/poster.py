@@ -10,10 +10,10 @@ class Poster(Mode):
     ORDER = 18
 
     DEFAULT_LINEUP_A = [
-        'UVALL [GE]', 'HONNELOOK', 'SCRIPT [GE]', 'FUKUMACHI [GE]', 'MTVARE [GE]',
+        'MANUSCRIPT LIGHT', 'INK FIELD', 'STONE MEMORY', 'WINDOW TRACE', 'COURTYARD SIGNAL',
     ]
     DEFAULT_LINEUP_B = [
-        'MARS', 'ICECHAIN', 'MA', 'LYUPEN', 'ISO',
+        'BOOK SHADOW', 'ROOM TONE', 'MUSEUM ECHO', 'YEREVAN AIR', 'NIGHT READING',
     ]
 
     def _write(self, buf, w, h, x, y, text, col):
@@ -42,15 +42,15 @@ class Poster(Mode):
         return items or list(fallback)
 
     def _title_text(self, cfg):
-        title = self._meta(cfg, 'event_title', '') or self._meta(cfg, 'flash_text', 'SYNAPSE')
+        title = self._meta(cfg, 'event_title', '') or self._meta(cfg, 'flash_text', 'ABOVYAN')
         title = title.upper()
         if ' ' not in title and len(title) <= 10:
             return ' '.join(title)
         return re.sub(r'\s+', ' ', title)
 
     def _stage_blocks(self, cfg):
-        stage_a = self._meta(cfg, 'event_stage_a', self._meta(cfg, 'event_where', 'STUDIO')).upper()
-        stage_b = self._meta(cfg, 'event_stage_b', 'BAR').upper()
+        stage_a = self._meta(cfg, 'event_stage_a', self._meta(cfg, 'event_where', 'MUSEUM')).upper()
+        stage_b = self._meta(cfg, 'event_stage_b', 'COURTYARD').upper()
         lineup_a = self._lineup(cfg, 'event_lineup_a', self.DEFAULT_LINEUP_A)
         lineup_b = self._lineup(cfg, 'event_lineup_b', self.DEFAULT_LINEUP_B)
         if not cfg.get('event_lineup_a') and not cfg.get('event_lineup_b'):
@@ -111,9 +111,9 @@ class Poster(Mode):
         accent = C[pal['a']]
         dark = C['dim']
         title = self._title_text(cfg)
-        kicker = self._meta(cfg, 'event_kicker', 'EPOCA ->').upper()
-        when = self._meta(cfg, 'event_when', 'MAY 15').upper()
-        footer = self._meta(cfg, 'event_footer', 'SCIENCE AND SPIRIT').upper()
+        kicker = self._meta(cfg, 'event_kicker', 'MUSEUM ->').upper()
+        when = self._meta(cfg, 'event_when', 'MAY 16').upper()
+        footer = self._meta(cfg, 'event_footer', 'LIVE VISUALS IN THE MUSEUM').upper()
         (stage_a, lineup_a), (stage_b, lineup_b) = self._stage_blocks(cfg)
 
         for y in range(h):
