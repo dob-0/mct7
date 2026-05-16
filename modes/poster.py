@@ -10,10 +10,10 @@ class Poster(Mode):
     ORDER = 18
 
     DEFAULT_LINEUP_A = [
-        'MANUSCRIPT LIGHT', 'INK FIELD', 'STONE MEMORY', 'WINDOW TRACE', 'COURTYARD SIGNAL',
+        'AI STITCH', 'SHARED BODY', 'GHOST HAND', 'LATENT HANDSHAKE', 'ARMENIAN EMOTION',
     ]
     DEFAULT_LINEUP_B = [
-        'BOOK SHADOW', 'ROOM TONE', 'MUSEUM ECHO', 'YEREVAN AIR', 'NIGHT READING',
+        'GERMAN LIGHT', 'DIGITAL ARCHITECTURE', 'NETWORK LAG', 'RECIPROCAL TRAP', 'POINT CLOUDS',
     ]
 
     def _write(self, buf, w, h, x, y, text, col):
@@ -42,15 +42,15 @@ class Poster(Mode):
         return items or list(fallback)
 
     def _title_text(self, cfg):
-        title = self._meta(cfg, 'event_title', '') or self._meta(cfg, 'flash_text', 'ABOVYAN')
+        title = self._meta(cfg, 'event_title', '') or self._meta(cfg, 'flash_text', 'STITCH')
         title = title.upper()
         if ' ' not in title and len(title) <= 10:
             return ' '.join(title)
         return re.sub(r'\s+', ' ', title)
 
     def _stage_blocks(self, cfg):
-        stage_a = self._meta(cfg, 'event_stage_a', self._meta(cfg, 'event_where', 'MUSEUM')).upper()
-        stage_b = self._meta(cfg, 'event_stage_b', 'COURTYARD').upper()
+        stage_a = self._meta(cfg, 'event_stage_a', self._meta(cfg, 'event_where', 'LATENT SPACE')).upper()
+        stage_b = self._meta(cfg, 'event_stage_b', 'MUNICH [STEEL]').upper()
         lineup_a = self._lineup(cfg, 'event_lineup_a', self.DEFAULT_LINEUP_A)
         lineup_b = self._lineup(cfg, 'event_lineup_b', self.DEFAULT_LINEUP_B)
         if not cfg.get('event_lineup_a') and not cfg.get('event_lineup_b'):
@@ -111,9 +111,9 @@ class Poster(Mode):
         accent = C[pal['a']]
         dark = C['dim']
         title = self._title_text(cfg)
-        kicker = self._meta(cfg, 'event_kicker', 'MUSEUM ->').upper()
-        when = self._meta(cfg, 'event_when', 'MAY 16').upper()
-        footer = self._meta(cfg, 'event_footer', 'LIVE VISUALS IN THE MUSEUM').upper()
+        kicker = self._meta(cfg, 'event_kicker', 'GYUMRI <-> MUNICH').upper()
+        when = self._meta(cfg, 'event_when', '121-228MS').upper()
+        footer = self._meta(cfg, 'event_footer', 'TELE-SYMBIOTIC XR PERFORMANCE').upper()
         (stage_a, lineup_a), (stage_b, lineup_b) = self._stage_blocks(cfg)
 
         for y in range(h):

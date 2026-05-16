@@ -1,6 +1,6 @@
 # ii — AI Context
 
-**_ii** is a live VJ terminal visual engine — a clean generic build for museum and projection work in Yerevan. The user runs this during live performances and edits it in real time via prompts.
+**_ii** is a live VJ terminal visual engine — a clean generic build for tele-symbiotic projection work. The user runs this during live performances and edits it in real time via prompts.
 
 Remote management: `ii start|stop|restart|status|attach|update|watch` (script at `~/bin/ii` on the Debian host). Visuals run on TTY1; the curses deck runs in tmux session `ii`; the web panel runs at `:7777`.
 
@@ -116,7 +116,7 @@ Curses TUI. Single class `NodeEngine`. Writes `control.json` every loop iteratio
 14 CUBE       — rotating 3D wireframe cube via rot3d + bresenham
 15 SHOCKWAVE  — multiple expanding ring objects, BPM-syncable spawn
 16 NOISE      — smooth multi-sine noise field, char+color by value
-17 LIQUID     — museum poster look: white block-type over blue/magenta fluid forms, mic+camera reactive
+17 LIQUID     — br_id_ge latent-space look: white block-type over blue/magenta fluid forms, mic+camera reactive
 18 POSTER     — hard flyer system: stacked oversized type, arcs, stage labels, block glitch background
 ```
 

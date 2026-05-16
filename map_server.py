@@ -603,53 +603,53 @@ canvas{cursor:crosshair}
     <div class="ctrl-section">
       <h3>FLASH TEXT</h3>
       <div class="flash-row">
-        <input type="text" id="flash-input" placeholder="ABOVYAN" value="ABOVYAN"
+        <input type="text" id="flash-input" placeholder="STITCH" value="STITCH"
                onkeydown="if(event.key==='Enter')triggerFlash()">
         <button class="cbtn" onclick="triggerFlash()">TRIGGER</button>
       </div>
     </div>
 
     <div class="ctrl-section" style="grid-column:1/-1">
-      <h3>MUSEUM COPY</h3>
+      <h3>BRIDGE COPY</h3>
       <div class="ctrl-stack">
         <div>
           <label>TITLE</label>
-          <input type="text" id="event-title" placeholder="MUSEUM OF THE ABOVYAN"
+          <input type="text" id="event-title" placeholder="BR_ID_GE"
                  oninput="ctrlSet('event_title',this.value)">
         </div>
         <div>
           <label>KICKER</label>
-          <input type="text" id="event-kicker" placeholder="MUSEUM ->"
+          <input type="text" id="event-kicker" placeholder="GYUMRI <-> MUNICH"
                  oninput="ctrlSet('event_kicker',this.value)">
         </div>
         <div>
           <label>WHEN</label>
-          <input type="text" id="event-when" placeholder="MAY 16"
+          <input type="text" id="event-when" placeholder="121-228MS"
                  oninput="ctrlSet('event_when',this.value)">
         </div>
         <div>
-          <label>ROOM A</label>
-          <input type="text" id="event-stage-a" placeholder="ARCHIVE"
+          <label>NODE A</label>
+          <input type="text" id="event-stage-a" placeholder="GYUMRI [TUFF]"
                  oninput="ctrlSet('event_stage_a',this.value)">
         </div>
         <div>
-          <label>ROOM B</label>
-          <input type="text" id="event-stage-b" placeholder="COURTYARD"
+          <label>NODE B</label>
+          <input type="text" id="event-stage-b" placeholder="MUNICH [STEEL]"
                  oninput="ctrlSet('event_stage_b',this.value)">
         </div>
         <div style="grid-column:1/-1">
-          <label>ROOM A MATERIALS (use | between phrases)</label>
-          <input type="text" id="event-lineup-a" placeholder="MANUSCRIPT LIGHT|INK FIELD|STONE MEMORY|WINDOW TRACE|COURTYARD SIGNAL"
+          <label>NODE A SIGNALS (use | between phrases)</label>
+          <input type="text" id="event-lineup-a" placeholder="AI STITCH|SHARED BODY|GHOST HAND|LATENT HANDSHAKE|ARMENIAN EMOTION"
                  oninput="ctrlSet('event_lineup_a',this.value)">
         </div>
         <div style="grid-column:1/-1">
-          <label>ROOM B MATERIALS (use | between phrases)</label>
-          <input type="text" id="event-lineup-b" placeholder="BOOK SHADOW|ROOM TONE|MUSEUM ECHO|YEREVAN AIR|NIGHT READING"
+          <label>NODE B SIGNALS (use | between phrases)</label>
+          <input type="text" id="event-lineup-b" placeholder="GERMAN LIGHT|DIGITAL ARCHITECTURE|NETWORK LAG|RECIPROCAL TRAP|POINT CLOUDS"
                  oninput="ctrlSet('event_lineup_b',this.value)">
         </div>
         <div style="grid-column:1/-1">
           <label>FOOTER</label>
-          <input type="text" id="event-footer" placeholder="LIVE VISUALS IN THE MUSEUM"
+          <input type="text" id="event-footer" placeholder="TELE-SYMBIOTIC XR PERFORMANCE"
                  oninput="ctrlSet('event_footer',this.value)">
         </div>
       </div>
@@ -1188,7 +1188,7 @@ function applyCtrlToUI(c){
   const bb=document.getElementById('blackout-btn');
   if(bb)bb.classList.toggle('on',!!(c.blackout));
 
-  syncTextInput('flash-input',c.flash_text??'ABOVYAN');
+  syncTextInput('flash-input',c.flash_text??'STITCH');
   syncTextInput('event-title',c.event_title??'');
   syncTextInput('event-kicker',c.event_kicker??'');
   syncTextInput('event-when',c.event_when??'');
@@ -1243,7 +1243,7 @@ function tapTempo(){
 }
 
 function triggerFlash(){
-  const txt=document.getElementById('flash-input').value||'ABOVYAN';
+  const txt=document.getElementById('flash-input').value||'STITCH';
   ctrlSet('flash_text',txt);
   ctrlSet('flash_active',true);
   clearTimeout(flashTimer);

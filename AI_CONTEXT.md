@@ -1,4 +1,4 @@
-# Abovyan Museum Visuals — Project Context for AI Assistants
+# br_id_ge Visuals — Project Context for AI Assistants
 
 Paste this file into any AI chat to get full project context instantly.
 
@@ -6,7 +6,7 @@ Paste this file into any AI chat to get full project context instantly.
 
 ## What This Is
 
-A live terminal visual engine built in Python for museum projection work at the Museum of the Abovyan, Yerevan 2026. It runs in a Kitty GPU-accelerated terminal and outputs pure ASCII/Unicode art using ANSI escape codes. Optional mic/camera nodes use `sounddevice`, `numpy`, and `opencv-python`; Art-Net output uses stdlib UDP.
+A live terminal visual engine built in Python for br_id_ge tele-symbiotic XR projection: Gyumri [TUFF] <-> AI: STITCH <-> Munich [STEEL]. It runs in a Kitty GPU-accelerated terminal and outputs pure ASCII/Unicode art using ANSI escape codes. Optional mic/camera nodes use `sounddevice`, `numpy`, and `opencv-python`; Art-Net output uses stdlib UDP.
 
 Two terminals run simultaneously:
 - **Fullscreen terminal** → `python3 visuals.py` (the visuals, fullscreen Kitty)
@@ -160,7 +160,7 @@ self._vcache   = None     # [[row_rn, row_a], ...] — precomputed for VORTEX
   "flash_active": false,
   "bpm_sync": false,
   "palette": 0,
-  "flash_text": "ABOVYAN",
+  "flash_text": "STITCH",
   "frame_delay": 0.05,
   "strobe_speed": 2,
   "glitch_intensity": 0.4,
@@ -253,7 +253,7 @@ for key in (..., 'my_param'):
 
 ## Aesthetic Guidelines
 
-- **Museum/archives**: heavy block characters, high contrast, manuscript texture, stroboscopic only when useful
+- **br_id_ge / tele-symbiosis**: heavy block characters, high contrast, latent vectors, ghost-hand traces, network lag as visual rhythm
 - **Color**: bold ANSI colors only — no 256-color or truecolor (keeps it sharp on any terminal)
 - **Motion**: math-driven (sin/cos), not random drift — rhythmic, BPM-aware where possible
 - **Characters**: `█ ▓ ▒ ░ ▚ ◈ 7 M O C T` — defined in config.json `symbols` array
@@ -278,4 +278,4 @@ Old standalone scripts from before the main engine was built. Separate codebase,
 
 ---
 
-*Abovyan Museum visuals | Yerevan 2026*
+*br_id_ge visuals | Gyumri <-> Munich | 2026*

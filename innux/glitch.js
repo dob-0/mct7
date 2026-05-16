@@ -1,4 +1,4 @@
-const chars = "ABOVYANMUSEUM#@%&";
+const chars = "BRIDGE_STITCH_GHOST_121228#@%&";
 setInterval(() => {
   const line = Array.from({length: process.stdout.columns}, () => 
     chars[Math.floor(Math.random() * chars.length)]

@@ -28,14 +28,14 @@ class Split(Mode):
         accent = C[pal['a']]
         dark = C['dim']
 
-        title = str(cfg.get('event_title', cfg.get('flash_text', 'ABOVYAN')) or 'ABOVYAN').upper()
-        kicker = str(cfg.get('event_kicker', 'MUSEUM ->') or 'MUSEUM ->').upper()
-        when = str(cfg.get('event_when', 'MAY 16') or 'MAY 16').upper()
-        stage_a = str(cfg.get('event_stage_a', cfg.get('event_where', 'MUSEUM')) or 'MUSEUM').upper()
-        stage_b = str(cfg.get('event_stage_b', 'COURTYARD') or 'COURTYARD').upper()
-        lineup_a = self._parts(cfg.get('event_lineup_a'), ['MANUSCRIPT LIGHT', 'INK FIELD', 'STONE MEMORY', 'WINDOW TRACE', 'COURTYARD SIGNAL'])
-        lineup_b = self._parts(cfg.get('event_lineup_b'), ['BOOK SHADOW', 'ROOM TONE', 'MUSEUM ECHO', 'YEREVAN AIR', 'NIGHT READING'])
-        footer = str(cfg.get('event_footer', 'LIVE VISUALS IN THE MUSEUM') or 'LIVE VISUALS IN THE MUSEUM').upper()
+        title = str(cfg.get('event_title', cfg.get('flash_text', 'STITCH')) or 'STITCH').upper()
+        kicker = str(cfg.get('event_kicker', 'GYUMRI <-> MUNICH') or 'GYUMRI <-> MUNICH').upper()
+        when = str(cfg.get('event_when', '121-228MS') or '121-228MS').upper()
+        stage_a = str(cfg.get('event_stage_a', cfg.get('event_where', 'LATENT SPACE')) or 'LATENT SPACE').upper()
+        stage_b = str(cfg.get('event_stage_b', 'MUNICH [STEEL]') or 'MUNICH [STEEL]').upper()
+        lineup_a = self._parts(cfg.get('event_lineup_a'), ['AI STITCH', 'SHARED BODY', 'GHOST HAND', 'LATENT HANDSHAKE', 'ARMENIAN EMOTION'])
+        lineup_b = self._parts(cfg.get('event_lineup_b'), ['GERMAN LIGHT', 'DIGITAL ARCHITECTURE', 'NETWORK LAG', 'RECIPROCAL TRAP', 'POINT CLOUDS'])
+        footer = str(cfg.get('event_footer', 'TELE-SYMBIOTIC XR PERFORMANCE') or 'TELE-SYMBIOTIC XR PERFORMANCE').upper()
 
         for y in range(h):
             for x in range(w):

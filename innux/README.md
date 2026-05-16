@@ -1,14 +1,14 @@
-# Abovyan Museum | Terminal Visual Engine v1.0
+# br_id_ge | Terminal Visual Engine v1.0
 
 ## Overview
 
-This directory houses the legacy `innux` visual core for live projections at the Museum of the Abovyan. It transforms the terminal into a simple instrument for archival light, manuscript texture, room tone, and museum signage.
+This directory houses the legacy `innux` visual core for br_id_ge live projections. It turns the terminal into a simple instrument for latent vectors, ghost-hand traces, network lag, and the Gyumri <-> Munich bridge.
 
 ## The Visual Toolkit
 
-1. Python (`visuals.py`): Smooth, math-based pulses and liquid light effects.
-2. Bash (`matrix.sh`): High-speed archive rain and system noise.
-3. Node.js (`glitch.js`): Rapid ASCII particle glitches for scanned-paper interference.
+1. Python (`visuals.py`): Smooth pulses and liquid latent-space effects.
+2. Bash (`matrix.sh`): High-speed signal rain and transport noise.
+3. Node.js (`glitch.js`): ASCII particle glitches for packet loss and remote-body interference.
 
 ## Deployment
 
@@ -18,4 +18,4 @@ This directory houses the legacy `innux` visual core for live projections at the
    bash innux/matrix.sh
    node innux/glitch.js
 
-Developed for Abovyan Museum visuals, Yerevan, 2026.
+Developed for br_id_ge tele-symbiotic visuals, 2026.
