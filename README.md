@@ -216,6 +216,10 @@ scripts/update-and-restart.sh --force-x   # always restart full X layout
 Attach to the controller directly:
 
 ```bash
+# on di.ii hotspot
+ssh dob@10.42.0.1 -t "tmux attach -t ii"
+
+# on venue network
 ssh dob@192.168.88.136 -t "tmux attach -t ii"
 ```
 
@@ -518,50 +522,72 @@ Need a clean blank screen:
 - Press `B` in the controller.
 - Or click `BLACKOUT` in the portal `CTRL` tab.
 
+## Network Setup
+
+The Debian machine runs a WiFi hotspot called `di.ii`. Its IP depends on the
+network context:
+
+| Context | Debian IP | Web portal |
+| --- | --- | --- |
+| Connected to `di.ii` hotspot | `10.42.0.1` | `http://10.42.0.1:7777` |
+| Venue local network | `192.168.88.136` | `http://192.168.88.136:7777` |
+
+The Debian machine usually has **no internet** when the hotspot is active.
+All code sync goes through the laptop, which bridges Debian and GitHub.
+
+## Session Start — Always Do This First
+
+Before editing any code, sync with Debian to get its latest state:
+
+```bash
+cd /path/to/_ii
+scripts/sync.sh
+```
+
+This fetches Debian's commits and rebases any local work on top. Skipping
+this causes diverged branches and manual conflict resolution.
+
 ## Live Update Workflow
 
-Edit on laptop, push, then run one command on the Debian machine:
+The full cycle for any code change:
 
 ```bash
-# laptop
-scripts/git-sync.sh "describe the change"
+# 1. Sync before touching anything
+scripts/sync.sh
 
-# debian
-scripts/update-and-restart.sh
+# 2. Edit files as needed (modes, nodes, cues, config, etc.)
+
+# 3. Commit, push to GitHub, and deploy to Debian in one command
+scripts/sync.sh push "describe the change"
 ```
 
-What this does:
+`sync.sh push` does all of this automatically:
 
-- fetches and fast-forwards to latest `origin/main`
-- detects changed files
+- stages and commits all changes
+- pushes to GitHub (skips gracefully if no internet)
+- pushes directly to Debian over SSH
+- resets Debian's worktree to the new commit
 - restarts only the affected components (`vis`, `ctrl`, `web`)
-- restarts full `x` layout when display/system files changed
 
-During development or rehearsal you can still use:
+If Debian is not reachable when you push, push to it later:
 
 ```bash
-ii watch 10
+scripts/sync.sh push-debian
 ```
 
-Then trigger smart restart manually after a pull when needed:
+Check sync state at any time:
 
 ```bash
-scripts/update-and-restart.sh --dry-run
-scripts/update-and-restart.sh
+scripts/sync.sh status
 ```
 
 ## Git Sync
 
-Use the repository sync script after intentional changes:
+`scripts/sync.sh` replaces the old `git-sync.sh` + `update-and-restart.sh`
+two-step. The old scripts still work but are not the recommended path.
 
-```bash
-scripts/git-sync.sh "short commit message"
-```
-
-The script stages repo changes, commits, pushes the current branch, and prints
-the final git status. Runtime files such as `control.json`, `status.json`,
-`display_assign.json`, `cues.json`, media uploads, temp files, and Python caches
-should stay ignored by `.gitignore`.
+Runtime files (`control.json`, `status.json`, `display_assign.json`,
+`cues.json`, media uploads, Python caches) are git-ignored and never committed.
 
 ## Repository Layout
 
