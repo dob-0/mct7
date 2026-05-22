@@ -64,18 +64,28 @@ fi
 old_head="$(git rev-parse HEAD)"
 
 echo "[update] fetching origin/$branch..."
-git fetch origin "$branch"
-new_remote="$(git rev-parse "origin/$branch")"
-
-if [[ "$old_head" == "$new_remote" ]]; then
-    echo "[update] already up to date ($old_head)"
-    exit 0
+if git fetch origin "$branch" 2>/dev/null; then
+    new_remote="$(git rev-parse "origin/$branch")"
+    if [[ "$old_head" == "$new_remote" ]]; then
+        echo "[update] already up to date ($old_head)"
+        exit 0
+    fi
+    echo "[update] updating to $new_remote"
+    git pull --ff-only origin "$branch"
+    new_head="$(git rev-parse HEAD)"
+else
+    # No internet (Debian hotspot mode). sync.sh already reset the worktree.
+    # ORIG_HEAD is set by git reset --hard and points to the previous commit.
+    echo "[update] WARN: origin unreachable — detecting changes from ORIG_HEAD"
+    if git rev-parse ORIG_HEAD &>/dev/null; then
+        old_head="$(git rev-parse ORIG_HEAD)"
+    fi
+    new_head="$(git rev-parse HEAD)"
+    if [[ "$old_head" == "$new_head" ]]; then
+        echo "[update] nothing to restart"
+        exit 0
+    fi
 fi
-
-echo "[update] updating to $new_remote"
-git pull --ff-only origin "$branch"
-
-new_head="$(git rev-parse HEAD)"
 
 mapfile -t changed_files < <(git diff --name-only "$old_head" "$new_head")
 
