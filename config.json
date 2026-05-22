@@ -22,5 +22,16 @@
   "visuals_window_title": "ii-VISUALS",
   "visuals_force_x11": false,
   "visuals_monitor": "auto-second",
-  "visuals_geometry": ""
+  "visuals_geometry": "",
+
+  "flash_text": "MUTATION",
+  "event_title": "MUTATION 2",
+  "event_kicker": "FRIDAY ->",
+  "event_when": "22 MAY",
+  "event_footer": "HAYFILM",
+  "event_stage_a": "LINE UP",
+  "event_stage_b": "STUDIO",
+  "event_lineup_a": "BAK|LYUPEN / PINKSTAR|KATE J (GE)|SUBVOID",
+  "event_lineup_b": "ICECHAIN|OOrt (GE) / KHIDI|SZG (BR)|SCHESSEE|RED VELVET|VULKANSKI (GE) / KHIDI",
+  "symbols": ["█", "▓", "▒", "░", "▚", "◈", "M", "U", "T", "A", "I", "O", "N"]
 }
