@@ -695,6 +695,7 @@ canvas{cursor:crosshair}
 const OW=1366,OH=768,MAP_OVERSCAN=0.25,MAP_MIN=-0.25,MAP_MAX=1.25;
 let canvasW=1,canvasH=1,canvasDpr=1;
 let SCALE=1,surfaces=[],sel=-1,drag=null,MODES=[],curFile='fb_map.json';
+let _mapFiles=[];
 const canvas=document.getElementById('c'),ctx=canvas.getContext('2d');
 const COLS=['#4488ff','#ff4466','#44ff88','#ffaa22','#cc44ff','#22ccff','#ffcc22','#ff6644'];
 
@@ -736,6 +737,14 @@ function _enterMapTab(){
   _updateMapBtn();
   fetch('/api/ctrl',{method:'POST',headers:{'Content-Type':'application/json'},
     body:JSON.stringify({map_mode:false,map_cursor_x:null,map_cursor_y:null})}).catch(()=>{});
+  fetch('/api/ctrl').then(r=>r.json()).then(c=>{
+    const idx=parseInt(c.mapping||0);
+    if(_mapFiles.length&&idx>=0&&idx<_mapFiles.length&&_mapFiles[idx]!==curFile){
+      curFile=_mapFiles[idx];
+      const s=document.getElementById('fileSel');if(s)s.value=curFile;
+      load();
+    }
+  }).catch(()=>{});
 }
 function _updateMapBtn(){
   const btn=document.getElementById('mapmode-btn');
@@ -769,7 +778,16 @@ function _fillVideoSelects(){
   if(el){const cur=el.value;el.innerHTML=videoOpts;el.value=cur;}
 }
 
-window.onload=()=>{resize();fetchMedia();fetchModes().then(()=>fetchFiles().then(()=>load()));_enterMapTab();};
+window.onload=()=>{resize();fetchMedia();fetchModes().then(()=>fetchFiles().then(()=>{
+  fetch('/api/ctrl').then(r=>r.json()).then(c=>{
+    const idx=parseInt(c.mapping||0);
+    if(_mapFiles.length&&idx>=0&&idx<_mapFiles.length){
+      curFile=_mapFiles[idx];
+      const s=document.getElementById('fileSel');if(s)s.value=curFile;
+    }
+    load();
+  }).catch(()=>load());
+}));_enterMapTab();};
 window.onresize=()=>{if(activeTab==='map')resize()};
 document.addEventListener('keydown',e=>{
   if(activeTab!=='map')return;
@@ -816,12 +834,18 @@ function buildModesSel(){
 async function fetchFiles(){
   try{
     const r=await fetch('/api/list');const files=await r.json();
+    _mapFiles=files;
     const sel=document.getElementById('fileSel');sel.innerHTML='';
     files.forEach(f=>{const o=document.createElement('option');o.value=f;o.textContent=f;if(f===curFile)o.selected=true;sel.appendChild(o)});
     if(!files.includes(curFile)&&files.length)curFile=files[0];
   }catch(e){}
 }
-function switchFile(f){curFile=f;load()}
+function switchFile(f){
+  curFile=f;
+  const idx=_mapFiles.indexOf(f);
+  if(idx>=0)fetch('/api/ctrl',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mapping:idx})}).catch(()=>{});
+  load();
+}
 
 async function load(){
   try{
@@ -832,6 +856,8 @@ async function load(){
 async function save(){
   try{
     await fetch(`/api/save?file=${curFile}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name:curFile.replace('.json',''),surfaces})});
+    const idx=_mapFiles.indexOf(curFile);
+    if(idx>=0)fetch('/api/ctrl',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mapping:idx})}).catch(()=>{});
     st('saved ✓');
   }catch(e){st('error: '+e)}
 }
