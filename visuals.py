@@ -477,6 +477,7 @@ class Engine:
                     mapping = self._active_mapping()
                     if mapping and render_zones(self.buf, self.w, self.render_h, self.modes, self.mode, mapping, merged, self.pal, syms, t_now, self.frame):
                         mapped_output = True
+                        _zone_mask = [row[:] for row in self.buf]
                     else:
                         self.modes[self.mode].render(self.buf_a, self.w, self.render_h, t_now, self.frame, merged, self.pal, syms)
                         if self.layer_b_enabled:
@@ -503,6 +504,12 @@ class Engine:
                 if not c.get('map_mode'):
                     fx_key = 'mapped' if mapped_output else 'main'
                     self._fx.apply(fx_key, self.buf, self.w, self.render_h, merged, self.frame)
+                    if mapped_output:
+                        for _zy in range(self.render_h):
+                            _zmr = _zone_mask[_zy]; _br = self.buf[_zy]
+                            for _zx in range(self.w):
+                                if _zmr[_zx] is None:
+                                    _br[_zx] = None
 
                 self._draw_map_cursor()
 
