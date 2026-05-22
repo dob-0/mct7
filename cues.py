@@ -9,31 +9,16 @@ from architecture import BASE
 CUES_PATH = os.path.join(BASE, 'cues.json')
 
 BUILTIN = [
-    # ── Branding / scene-setters ─────────────────────────────────────────────
-    {'name': 'MUTATION',   'mode': 18, 'palette': 6},
-    {'name': 'OPENER',     'mode': 0,  'palette': 2, 'rain_density': 0.4,  'frame_delay': 0.06},
-    {'name': 'PEAK',       'mode': 3,  'palette': 6, 'strobe_speed': 3,    'bpm_sync': True},
-    {'name': 'BLACKOUT',   'mode': 0,  'palette': 6, 'blackout': True},
-
-    # ── LINE UP stage ────────────────────────────────────────────────────────
-    {'name': 'BAK',        'mode': 13, 'palette': 6, 'glitch_intensity': 0.6,  'wave_amplitude': 0.45},
-    {'name': 'LYUPEN',     'mode': 7,  'palette': 6, 'frame_delay': 0.03},
-    {'name': 'PINKSTAR',   'mode': 8,  'palette': 7, 'wave_amplitude': 0.50},
-    {'name': 'KATE J',     'mode': 9,  'palette': 5, 'frame_delay': 0.035},
-    {'name': 'SUBVOID',    'mode': 2,  'palette': 6, 'glitch_intensity': 0.9,  'layer_b_enabled': True, 'mode_b': 13, 'layer_b_alpha': 0.5},
-
-    # ── STUDIO stage ─────────────────────────────────────────────────────────
-    {'name': 'ICECHAIN',   'mode': 17, 'palette': 2, 'layer_b_enabled': True,  'mode_b': 16, 'layer_b_alpha': 0.55},
-    {'name': 'OOrt',       'mode': 16, 'palette': 5, 'frame_delay': 0.055},
-    {'name': 'SZG',        'mode': 15, 'palette': 6, 'frame_delay': 0.03},
-    {'name': 'SCHESSEE',   'mode': 8,  'palette': 6, 'wave_amplitude': 0.40},
-    {'name': 'RED VELVET', 'mode': 9,  'palette': 7, 'frame_delay': 0.03},
-    {'name': 'VULKANSKI',  'mode': 7,  'palette': 5, 'frame_delay': 0.028},
-
-    # ── BAR room ─────────────────────────────────────────────────────────────
-    {'name': 'BAR',        'mode': 0,  'palette': 6, 'rain_density': 0.6,  'frame_delay': 0.05},
-    {'name': 'BUZZAND',    'mode': 5,  'palette': 7, 'frame_delay': 0.04},
-    {'name': 'PILLZ',      'mode': 11, 'palette': 6, 'frame_delay': 0.04},
+    {'name': 'RAIN',    'mode': 0,  'palette': 2, 'rain_density': 0.9,  'frame_delay': 0.04},
+    {'name': 'TUNNEL',  'mode': 7,  'palette': 0, 'frame_delay': 0.03},
+    {'name': 'EYE',     'mode': 20, 'palette': 6, 'frame_delay': 0.04},
+    {'name': 'PLASMA',  'mode': 8,  'palette': 5, 'wave_amplitude': 0.45},
+    {'name': 'VORTEX',  'mode': 9,  'palette': 3, 'frame_delay': 0.035},
+    {'name': 'STORM',   'mode': 13, 'palette': 6, 'glitch_intensity': 0.6},
+    {'name': 'GLITCH',  'mode': 2,  'palette': 4, 'glitch_intensity': 1.0},
+    {'name': 'LIQUID',  'mode': 17, 'palette': 5, 'layer_b_enabled': True, 'mode_b': 8, 'layer_b_alpha': 0.6},
+    {'name': 'STROBE',  'mode': 3,  'palette': 3, 'strobe_speed': 2, 'bpm_sync': True},
+    {'name': 'POSTER',  'mode': 18, 'palette': 6},
 ]
 
 
