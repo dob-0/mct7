@@ -124,12 +124,36 @@ fi
 
 ii_helper="/home/dob/bin/ii"
 
+x_is_running() {
+    [ -e /tmp/.X11-unix/X0 ]
+}
+
+restart_vis_x() {
+    # Relaunch visuals window when X is active.
+    local display="${DISPLAY:-:0}"
+    local xauth="${XAUTHORITY:-/home/dob/.Xauthority}"
+    local py; py="$(command -v python3 || echo /usr/bin/python3)"
+    local dir; dir="$(git rev-parse --show-toplevel)"
+    pkill -f "kitty.*ii-VISUALS" 2>/dev/null || true
+    pkill -f "visuals.py" 2>/dev/null || true
+    sleep 0.5
+    DISPLAY="$display" XAUTHORITY="$xauth" \
+        "$py" "$dir/window.py" >/tmp/ii-window.log 2>&1 &
+    echo "[update] visuals relaunched via window.py (X mode)"
+}
+
 restart_component() {
     local target="$1"
     if [[ "$dry_run" -eq 1 ]]; then
         echo "[update] dry-run: would run: $ii_helper restart $target"
         return 0
     fi
+
+    if [[ "$target" == "vis" ]] && x_is_running; then
+        restart_vis_x
+        return 0
+    fi
+
     if [[ -x "$ii_helper" ]]; then
         echo "[update] restarting $target"
         "$ii_helper" restart "$target"
