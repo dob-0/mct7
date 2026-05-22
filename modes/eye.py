@@ -6,7 +6,7 @@ from modes.base import C, Mode
 
 class Eye(Mode):
     NAME = 'EYE'
-    ORDER = 20
+    ORDER = 22
 
     def __init__(self):
         self.cache = []

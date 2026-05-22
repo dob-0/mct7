@@ -45,7 +45,7 @@ GRAPH = [
     BoolOut('camera2_online', CAM_SIDE_PRESENCE),
 
     # ── Mode flow: MUTATION 2 — dark techno sequence with EYE ────────────────
-    IntOut('mode',    Seq([13, 7, 20, 2, 9, 8, 17, 16, 15, 7], beats=8)),
+    IntOut('mode',    Seq([13, 7, 22, 2, 9, 8, 17, 16, 15, 7], beats=8)),
     IntOut('mode_b',  Select([Const(2), Const(13), Const(15), Const(16)], Scale(CAM_SIDE_MOTION, out_min=0, out_max=3.99))),
 
     # ── Palette: BLOOD + EMBER dominant, DEEP and VOID for depth ─────────────

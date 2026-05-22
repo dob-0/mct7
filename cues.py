@@ -11,7 +11,7 @@ CUES_PATH = os.path.join(BASE, 'cues.json')
 BUILTIN = [
     # ── Branding / scene-setters ─────────────────────────────────────────────
     {'name': 'MUTATION',   'mode': 18, 'palette': 6},
-    {'name': 'EYE',        'mode': 20, 'palette': 6, 'frame_delay': 0.04},
+    {'name': 'EYE',        'mode': 22, 'palette': 6, 'frame_delay': 0.04},
     {'name': 'OPENER',     'mode': 0,  'palette': 2, 'rain_density': 0.4,  'frame_delay': 0.06},
     {'name': 'PEAK',       'mode': 3,  'palette': 6, 'strobe_speed': 3,    'bpm_sync': True},
     {'name': 'BLACKOUT',   'mode': 0,  'palette': 6, 'blackout': True},
