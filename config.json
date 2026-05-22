@@ -1,105 +1,14 @@
 {
-  "symbols": [
-    "\u2588",
-    "\u2593",
-    "\u2592",
-    "\u2591",
-    "\u259a",
-    "\u25c8",
-    "b",
-    "r",
-    "_",
-    "i",
-    "d",
-    "g",
-    "e"
-  ],
+  "symbols": ["█", "▓", "▒", "░", "▚", "◈", "M", "U", "T", "A", "I", "O", "N"],
   "symbol_sets": [
-    [
-      "\u2588",
-      "\u2593",
-      "\u2592",
-      "\u2591",
-      "\u259a",
-      "\u25c8",
-      "b",
-      "r",
-      "_",
-      "i",
-      "d",
-      "g",
-      "e"
-    ],
-    [
-      "@",
-      "#",
-      "%",
-      "!",
-      "*",
-      "+",
-      "=",
-      "-",
-      "~",
-      "."
-    ],
-    [
-      "0",
-      "1",
-      "\u2502",
-      "\u2500",
-      "\u254e",
-      "\u2577",
-      "\u2554",
-      "\u2557",
-      "\u255a",
-      "\u255d"
-    ],
-    [
-      "\u250c",
-      "\u2510",
-      "\u2514",
-      "\u2518",
-      "\u251c",
-      "\u2524",
-      "\u252c",
-      "\u2534",
-      "\u253c",
-      "\u2502",
-      "\u2500"
-    ],
-    [
-      "\u25c8",
-      "\u25c6",
-      "\u25c7",
-      "\u25b2",
-      "\u25bc",
-      "\u25c9",
-      "\u25cf",
-      "\u25cb",
-      "\u25ce",
-      "\u25b8"
-    ],
-    [
-      "\u2211",
-      "\u220f",
-      "\u222b",
-      "\u2202",
-      "\u2207",
-      "\u221e",
-      "\u2248",
-      "\u2260",
-      "\u00b1",
-      "\u00d7"
-    ]
+    ["█","▓","▒","░","▚","◈","M","U","T","A","I","O","N"],
+    ["@","#","%","!","*","+","=","-","~","."],
+    ["0","1","│","─","╎","╷","╔","╗","╚","╝"],
+    ["┌","┐","└","┘","├","┤","┬","┴","┼","│","─"],
+    ["◈","◆","◇","▲","▼","◉","●","○","◎","▸"],
+    ["∑","∏","∫","∂","∇","∞","≈","≠","±","×"]
   ],
-  "symbol_set_names": [
-    "BLOCK",
-    "ASCII",
-    "DIGIT",
-    "GRID",
-    "SHAPES",
-    "MATH"
-  ],
+  "symbol_set_names": ["BLOCK","ASCII","DIGIT","GRID","SHAPES","MATH"],
   "frame_delay": 0.05,
   "mode_cycle_frames": 250,
   "wave_amplitude": 0.35,
@@ -113,5 +22,15 @@
   "visuals_window_title": "ii-VISUALS",
   "visuals_force_x11": false,
   "visuals_monitor": "auto-second",
-  "visuals_geometry": ""
+  "visuals_geometry": "",
+
+  "flash_text": "MUTATION",
+  "event_title": "MUTATION 2",
+  "event_kicker": "FRIDAY ->",
+  "event_when": "22 MAY",
+  "event_footer": "HAYFILM",
+  "event_stage_a": "LINE UP",
+  "event_stage_b": "STUDIO",
+  "event_lineup_a": "BAK|LYUPEN / PINKSTAR|KATE J (GE)|SUBVOID",
+  "event_lineup_b": "ICECHAIN|OOrt (GE) / KHIDI|SZG (BR)|SCHESSEE|RED VELVET|VULKANSKI (GE) / KHIDI"
 }

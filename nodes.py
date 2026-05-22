@@ -44,23 +44,23 @@ GRAPH = [
     Out('camera2_brightness', CAM_SIDE_BRIGHTNESS),
     BoolOut('camera2_online', CAM_SIDE_PRESENCE),
 
-    # ── Mode flow: beat structure plus manual overrides from ii.py ───────────
-    IntOut('mode',    Seq([17, 18, 19, 21, 7, 8, 3, 9, 14, 5, 16], beats=8)),
-    IntOut('mode_b',  Select([Const(3), Const(13), Const(11), Const(12)], Scale(CAM_SIDE_MOTION, out_min=0, out_max=3.99))),
+    # ── Mode flow: MUTATION 2 — heavy dark techno sequence ───────────────────
+    IntOut('mode',    Seq([13, 7, 2, 9, 8, 17, 16, 15, 9, 7], beats=8)),
+    IntOut('mode_b',  Select([Const(2), Const(13), Const(15), Const(16)], Scale(CAM_SIDE_MOTION, out_min=0, out_max=3.99))),
 
-    # ── Palette: slow cycle, with camera brightness able to pull it around ───
-    IntOut('palette', Mix(Seq([0, 1, 2, 3, 4, 5], beats=32), Scale(CAM_MAIN_BRIGHTNESS, out_min=0, out_max=5), CAM_MAIN_PRESENCE)),
+    # ── Palette: BLOOD + EMBER dominant, DEEP and VOID for depth ─────────────
+    IntOut('palette', Mix(Seq([6, 6, 7, 6, 5, 6, 7, 2], beats=32), Scale(CAM_MAIN_BRIGHTNESS, out_min=5, out_max=7), CAM_MAIN_PRESENCE)),
 
-    # ── Visual energy: mic and cameras drive the same performance state ──────
-    Out('wave_amplitude',   Mix(LFO(freq=0.18, shape='sin', min=0.15, max=0.42), Scale(MIC_LEVEL, out_min=0.18, out_max=0.50), 0.55)),
-    Out('glitch_intensity', Mix(LFO(freq=0.07, shape='square', min=0.05, max=0.55), Scale(CAM_MAIN_MOTION, out_min=0.08, out_max=1.00), 0.70)),
-    Out('rain_density',     Mix(LFO(freq=0.11, shape='tri', min=0.25, max=0.85), Scale(MIC_PEAK, out_min=0.35, out_max=1.00), 0.50)),
-    Out('frame_delay',      Mix(LFO(freq=0.04, shape='sin', min=0.035, max=0.070), Scale(MIC_LEVEL, out_min=0.020, out_max=0.055), 0.40)),
-    Out('strobe_speed',     BeatLFO(beats=2, shape='saw', min=1, max=6)),
+    # ── Visual energy: pushed harder for MUTATION intensity ──────────────────
+    Out('wave_amplitude',   Mix(LFO(freq=0.18, shape='sin', min=0.20, max=0.48), Scale(MIC_LEVEL, out_min=0.22, out_max=0.50), 0.55)),
+    Out('glitch_intensity', Mix(LFO(freq=0.07, shape='square', min=0.15, max=0.75), Scale(CAM_MAIN_MOTION, out_min=0.15, out_max=1.00), 0.70)),
+    Out('rain_density',     Mix(LFO(freq=0.11, shape='tri', min=0.40, max=0.95), Scale(MIC_PEAK, out_min=0.45, out_max=1.00), 0.50)),
+    Out('frame_delay',      Mix(LFO(freq=0.04, shape='sin', min=0.030, max=0.060), Scale(MIC_LEVEL, out_min=0.018, out_max=0.050), 0.40)),
+    Out('strobe_speed',     BeatLFO(beats=2, shape='saw', min=2, max=8)),
 
     # ── Live switches from sources ───────────────────────────────────────────
     BoolOut('flash_active', MIC_KICK),
-    BoolOut('layer_b_enabled', Mix(MIC_LEVEL, CAM_SIDE_MOTION, 0.5), threshold=0.24),
+    BoolOut('layer_b_enabled', Mix(MIC_LEVEL, CAM_SIDE_MOTION, 0.5), threshold=0.20),
 
     # ── Art-Net examples. Set enabled=True and host to your Art-Net node/IP.
     # ArtNetOut(1, Scale(MIC_LEVEL, out_min=0, out_max=255), host='2.0.0.10', universe=0, enabled=True),

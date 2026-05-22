@@ -23,8 +23,8 @@ class Poster(Mode):
             self.put(buf, x, y, ch, col, w, h)
 
     def _title_text(self, cfg):
-        title = str(cfg.get('bridge_title') or cfg.get('flash_text') or 'BR_ID_GE').upper()
-        return re.sub(r'\s+', ' ', title).strip() or 'BR_ID_GE'
+        title = str(cfg.get('event_title') or cfg.get('bridge_title') or cfg.get('flash_text') or 'MUTATION').upper()
+        return re.sub(r'\s+', ' ', title).strip() or 'MUTATION'
 
     def render(self, buf, w, h, t, frame, cfg, pal, syms):
         audio = float(cfg.get('audio_level', 0.0) or 0.0)
