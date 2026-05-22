@@ -76,7 +76,17 @@ launch_controller() {
 launch_controller
 CTRL_PID=$!
 
-sleep 1.5
+echo "waiting for _ii controller window..."
+for i in $(seq 1 30); do
+    sleep 1
+    if wmctrl -l | grep -q '_ii controller'; then
+        echo "found _ii controller after ${i}s"
+        break
+    fi
+done
+
+wmctrl -r '_ii controller' -e "0,${LX},${LY},${LW},${LH}" 2>/dev/null || true
+sleep 0.3
 wmctrl -r '_ii controller' -e "0,${LX},${LY},${LW},${LH}" 2>/dev/null || true
 wmctrl -r '_ii controller' -b add,maximized_vert,maximized_horz 2>/dev/null || true
 
