@@ -4,6 +4,26 @@
 the laptop screen, sends visuals to a projector or second display, and exposes a
 browser portal for mapping, live controls, media, and display management.
 
+## Clean Runtime Scaffold
+
+Alongside the legacy show system, the repo now also has a new clean runtime path
+under `ii_runtime/`. This is the rebuild track for `_ii`: typed control state,
+self-describing modes, and a terminal-first renderer that can later plug into
+the wider `di.iiii` runtime model.
+
+Quick checks:
+
+```bash
+python3 -m unittest tests.test_ii_runtime
+python3 -m ii_runtime snapshot
+python3 -m ii_runtime modes
+python3 -m ii_runtime controls
+python3 -m ii_runtime groups
+python3 -m ii_runtime cues
+python3 -m ii_runtime cue --name storm
+python3 -m ii_runtime frame --mode pulse --mode-b rain --layer-b --flash-active --flash-text ALERT
+```
+
 The usual live setup is:
 
 - Debian machine connected to the projector by HDMI.
